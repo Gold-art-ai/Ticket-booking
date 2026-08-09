@@ -31,6 +31,7 @@ public class TicketController {
     }
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){
+        service.getTicketByIdOrThrow(id);
         service.deleteTicket(id);
     }
 }
