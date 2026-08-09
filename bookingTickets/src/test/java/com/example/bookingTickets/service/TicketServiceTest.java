@@ -8,7 +8,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -28,5 +32,16 @@ class TicketServiceTest {
         assertNotNull(result);
         assertEquals(1L, result.getId());
         assertEquals("Alice", result.getPassengerName());
+    }
+
+    @Test
+    void getAllTickets_shouldReturnList() {
+        when(repository.findAll()).thenReturn(List.of(
+                new Ticket(1L, "A", "B", 1.0),
+                new Ticket(2L, "C", "D", 2.0)
+        ));
+        List<Ticket> result = ticketService.getAllTickets();
+        assertEquals(2, result.size());
+        verify(repository, times(1)).findAll();
     }
 }
