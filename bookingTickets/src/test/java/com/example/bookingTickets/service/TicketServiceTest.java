@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.times;
@@ -43,5 +44,17 @@ class TicketServiceTest {
         List<Ticket> result = ticketService.getAllTickets();
         assertEquals(2, result.size());
         verify(repository, times(1)).findAll();
+    }
+
+    @Test
+    void getTicketById_shouldReturnTicket_whenExists() {
+        Ticket ticket = new Ticket(1L, "Bob", "LA", 50.0);
+        when(repository.findById(1L)).thenReturn(Optional.of(ticket));
+        Optional<Ticket> result = ticketService.getTicketById(1L);
+        assertTrue(result.isPresent());
+        assertEquals(1L, result.get().getId());
+        assertEquals("Bob", result.get().getPassengerName());
+        assertEquals("LA", result.get().getDestination());
+        assertEquals(50.0, result.get().getPrice());
     }
 }
