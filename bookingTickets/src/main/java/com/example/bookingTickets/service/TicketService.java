@@ -45,6 +45,10 @@ public class TicketService {
         return repository.save(ticket);
     }
 
+    public Ticket updateTicket(Long id, TicketRequest request) {
+        return updateTicket(id, TicketMapper.toEntity(request));
+    }
+
     public void deleteTicket(Long id){
         repository.deleteById(id);
     }
