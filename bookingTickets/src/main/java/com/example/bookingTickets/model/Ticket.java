@@ -1,6 +1,7 @@
 package com.example.bookingTickets.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name= "tickets")
@@ -9,6 +10,7 @@ public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "Passenger name is required")
     private String passengerName;
     private String destination;
     private Double price;
