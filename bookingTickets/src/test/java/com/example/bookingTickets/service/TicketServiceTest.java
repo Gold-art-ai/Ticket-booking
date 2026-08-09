@@ -90,4 +90,10 @@ class TicketServiceTest {
         ticketService.deleteTicket(1L);
         verify(repository, times(1)).deleteById(1L);
     }
+
+    @Test
+    void getTicketByIdOrThrow_shouldThrow_whenNotFound() {
+        when(repository.findById(99L)).thenReturn(Optional.empty());
+        assertThrows(TicketNotFoundException.class, () -> ticketService.getTicketByIdOrThrow(99L));
+    }
 }
