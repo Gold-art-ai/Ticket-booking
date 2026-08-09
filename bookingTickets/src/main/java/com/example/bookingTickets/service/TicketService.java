@@ -1,5 +1,6 @@
 package com.example.bookingTickets.service;
 
+import com.example.bookingTickets.exception.TicketNotFoundException;
 import com.example.bookingTickets.model.Ticket;
 import com.example.bookingTickets.repository.TicketRepository;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public class TicketService {
     }
 
     public Ticket updateTicket(Long id, Ticket details){
-        Ticket ticket = repository.findById(id).orElseThrow(() -> new RuntimeException("Ticket not found"));
+        Ticket ticket = repository.findById(id).orElseThrow(() -> new TicketNotFoundException(id));
         ticket.setPassengerName(details.getPassengerName());
         ticket.setDestination(details.getDestination());
         ticket.setPrice(details.getPrice());
