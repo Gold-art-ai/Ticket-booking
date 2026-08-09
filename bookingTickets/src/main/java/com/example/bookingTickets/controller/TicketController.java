@@ -27,7 +27,7 @@ public class TicketController {
         return service.getTicketByIdOrThrow(id);
     }
     @PutMapping("/{id}")
-    public Ticket update(@PathVariable Long id, @RequestBody Ticket ticket){
+    public Ticket update(@PathVariable Long id, @Valid @RequestBody Ticket ticket){
         return service.updateTicket(id,ticket);
     }
     @DeleteMapping("/{id}")
