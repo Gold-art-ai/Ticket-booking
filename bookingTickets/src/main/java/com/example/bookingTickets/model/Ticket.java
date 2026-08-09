@@ -12,6 +12,7 @@ public class Ticket {
     private Long id;
     @NotBlank(message = "Passenger name is required")
     private String passengerName;
+    @NotBlank(message = "Destination is required")
     private String destination;
     private Double price;
 
