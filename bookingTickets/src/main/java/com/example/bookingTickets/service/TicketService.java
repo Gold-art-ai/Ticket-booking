@@ -27,6 +27,10 @@ public class TicketService {
         return repository.findById(id);
     }
 
+    public Ticket getTicketByIdOrThrow(Long id) {
+        return repository.findById(id).orElseThrow(() -> new TicketNotFoundException(id));
+    }
+
     public Ticket updateTicket(Long id, Ticket details){
         Ticket ticket = repository.findById(id).orElseThrow(() -> new TicketNotFoundException(id));
         ticket.setPassengerName(details.getPassengerName());
