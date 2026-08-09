@@ -2,7 +2,6 @@ package com.example.bookingTickets.controller;
 import com.example.bookingTickets.dto.TicketMapper;
 import com.example.bookingTickets.dto.TicketRequest;
 import com.example.bookingTickets.dto.TicketResponse;
-import com.example.bookingTickets.model.Ticket;
 import com.example.bookingTickets.service.TicketService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
@@ -33,8 +32,8 @@ public class TicketController {
         return TicketMapper.toResponse(service.getTicketByIdOrThrow(id));
     }
     @PutMapping("/{id}")
-    public Ticket update(@PathVariable Long id, @Valid @RequestBody Ticket ticket){
-        return service.updateTicket(id,ticket);
+    public TicketResponse update(@PathVariable Long id, @Valid @RequestBody TicketRequest request){
+        return TicketMapper.toResponse(service.updateTicket(id, request));
     }
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){
