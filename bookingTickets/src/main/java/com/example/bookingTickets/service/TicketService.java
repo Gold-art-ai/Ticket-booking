@@ -2,15 +2,17 @@ package com.example.bookingTickets.service;
 
 import com.example.bookingTickets.model.Ticket;
 import com.example.bookingTickets.repository.TicketRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class TicketService {
-    @Autowired
     private TicketRepository repository;
+
+    public TicketService(TicketRepository repository) {
+        this.repository = repository;
+    }
 
     public Ticket createTicket(Ticket ticket){
         return repository.save(ticket);
