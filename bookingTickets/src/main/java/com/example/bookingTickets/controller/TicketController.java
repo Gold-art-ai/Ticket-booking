@@ -23,7 +23,7 @@ public class TicketController {
     }
     @GetMapping("/{id}")
     public Ticket fetchById(@PathVariable Long id){
-        return service.getTicketById(id).orElse(null);
+        return service.getTicketByIdOrThrow(id);
     }
     @PutMapping("/{id}")
     public Ticket update(@PathVariable Long id, @RequestBody Ticket ticket){
