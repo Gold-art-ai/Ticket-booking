@@ -1,5 +1,6 @@
 package com.example.bookingTickets.service;
 
+import com.example.bookingTickets.exception.TicketNotFoundException;
 import com.example.bookingTickets.model.Ticket;
 import com.example.bookingTickets.repository.TicketRepository;
 import org.junit.jupiter.api.Test;
@@ -76,5 +77,11 @@ class TicketServiceTest {
         assertEquals("newDest", result.getDestination());
         assertEquals(99.0, result.getPrice());
         verify(repository, times(1)).save(existingTicket);
+    }
+
+    @Test
+    void updateTicket_shouldThrow_whenNotFound() {
+        when(repository.findById(99L)).thenReturn(Optional.empty());
+        assertThrows(TicketNotFoundException.class, () -> ticketService.updateTicket(99L, new Ticket()));
     }
 }
