@@ -3,6 +3,7 @@ package com.example.bookingTickets.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -18,6 +19,7 @@ public class Ticket {
     @NotBlank(message = "Destination is required")
     private String destination;
     @NotNull(message = "Price is required")
+    @Positive(message = "Price must be greater than 0")
     private Double price;
 
     public Ticket() {
