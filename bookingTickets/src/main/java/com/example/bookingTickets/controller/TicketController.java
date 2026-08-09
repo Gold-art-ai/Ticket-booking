@@ -1,15 +1,18 @@
 package com.example.bookingTickets.controller;
 import com.example.bookingTickets.model.Ticket;
 import com.example.bookingTickets.service.TicketService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
 @RequestMapping("/api/tickets")
 public class TicketController {
-    @Autowired
     private TicketService service;
+
+    public TicketController(TicketService service) {
+        this.service = service;
+    }
+
     @PostMapping
     public Ticket addTicket(@RequestBody Ticket ticket){
         return service.createTicket(ticket);
