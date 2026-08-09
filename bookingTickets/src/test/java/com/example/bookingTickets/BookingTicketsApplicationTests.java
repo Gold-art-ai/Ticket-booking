@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class BookingTicketsApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void contextLoads_smokeTest() {
 	}
 
 }
