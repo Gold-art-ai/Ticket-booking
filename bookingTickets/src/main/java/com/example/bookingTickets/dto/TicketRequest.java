@@ -1,8 +1,18 @@
 package com.example.bookingTickets.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
+
 public class TicketRequest {
+    @NotBlank
+    @Size(min = 2, max = 100)
     private String passengerName;
+    @NotBlank
     private String destination;
+    @NotNull
+    @Positive
     private Double price;
 
     public TicketRequest() {
