@@ -1,5 +1,7 @@
 package com.example.bookingTickets.service;
 
+import com.example.bookingTickets.dto.TicketMapper;
+import com.example.bookingTickets.dto.TicketRequest;
 import com.example.bookingTickets.exception.TicketNotFoundException;
 import com.example.bookingTickets.model.Ticket;
 import com.example.bookingTickets.repository.TicketRepository;
@@ -17,6 +19,10 @@ public class TicketService {
 
     public Ticket createTicket(Ticket ticket){
         return repository.save(ticket);
+    }
+
+    public Ticket createTicket(TicketRequest request) {
+        return createTicket(TicketMapper.toEntity(request));
     }
 
     public List<Ticket> getAllTickets(){
