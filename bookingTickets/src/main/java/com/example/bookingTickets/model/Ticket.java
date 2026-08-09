@@ -2,6 +2,7 @@ package com.example.bookingTickets.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -16,6 +17,7 @@ public class Ticket {
     private String passengerName;
     @NotBlank(message = "Destination is required")
     private String destination;
+    @NotNull(message = "Price is required")
     private Double price;
 
     public Ticket() {
