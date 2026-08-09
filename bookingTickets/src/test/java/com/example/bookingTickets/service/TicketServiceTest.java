@@ -57,4 +57,11 @@ class TicketServiceTest {
         assertEquals("LA", result.get().getDestination());
         assertEquals(50.0, result.get().getPrice());
     }
+
+    @Test
+    void getTicketById_shouldReturnEmpty_whenNotExists() {
+        when(repository.findById(99L)).thenReturn(Optional.empty());
+        Optional<Ticket> result = ticketService.getTicketById(99L);
+        assertTrue(result.isEmpty());
+    }
 }
