@@ -84,4 +84,10 @@ class TicketServiceTest {
         when(repository.findById(99L)).thenReturn(Optional.empty());
         assertThrows(TicketNotFoundException.class, () -> ticketService.updateTicket(99L, new Ticket()));
     }
+
+    @Test
+    void deleteTicket_shouldCallRepositoryDeleteById() {
+        ticketService.deleteTicket(1L);
+        verify(repository, times(1)).deleteById(1L);
+    }
 }
