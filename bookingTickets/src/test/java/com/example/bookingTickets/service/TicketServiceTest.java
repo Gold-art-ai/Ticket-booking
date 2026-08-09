@@ -64,4 +64,17 @@ class TicketServiceTest {
         Optional<Ticket> result = ticketService.getTicketById(99L);
         assertTrue(result.isEmpty());
     }
+
+    @Test
+    void updateTicket_shouldUpdateFields() {
+        Ticket existingTicket = new Ticket(1L, "oldName", "oldDest", 50.0);
+        Ticket updatedTicket = new Ticket(1L, "newName", "newDest", 99.0);
+        when(repository.findById(1L)).thenReturn(Optional.of(existingTicket));
+        when(repository.save(existingTicket)).thenReturn(updatedTicket);
+        Ticket result = ticketService.updateTicket(1L, new Ticket(null, "newName", "newDest", 99.0));
+        assertEquals("newName", result.getPassengerName());
+        assertEquals("newDest", result.getDestination());
+        assertEquals(99.0, result.getPrice());
+        verify(repository, times(1)).save(existingTicket);
+    }
 }
