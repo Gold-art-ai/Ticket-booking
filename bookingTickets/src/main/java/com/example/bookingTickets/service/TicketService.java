@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @Service
 public class TicketService {
-    private TicketRepository repository;
+    private final TicketRepository repository;
 
     public TicketService(TicketRepository repository) {
         this.repository = repository;
