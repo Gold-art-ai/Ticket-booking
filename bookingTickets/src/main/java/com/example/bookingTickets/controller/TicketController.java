@@ -1,6 +1,7 @@
 package com.example.bookingTickets.controller;
 import com.example.bookingTickets.model.Ticket;
 import com.example.bookingTickets.service.TicketService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class TicketController {
     }
 
     @PostMapping
-    public Ticket addTicket(@RequestBody Ticket ticket){
+    public Ticket addTicket(@Valid @RequestBody Ticket ticket){
         return service.createTicket(ticket);
     }
     @GetMapping
